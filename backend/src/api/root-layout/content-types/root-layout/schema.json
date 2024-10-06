@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "root_layouts",
+  "info": {
+    "singularName": "root-layout",
+    "pluralName": "root-layouts",
+    "displayName": "Root Layout",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "nav": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.top-nav"
+    },
+    "footer": {
+      "type": "component",
+      "repeatable": false,
+      "component": "layout.footer"
+    }
+  }
+}

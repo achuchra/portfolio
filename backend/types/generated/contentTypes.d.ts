@@ -51,6 +51,10 @@ export interface PluginUploadFile extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::upload.file'
+    >;
   };
 }
 
@@ -97,6 +101,10 @@ export interface PluginUploadFolder extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::upload.folder'
+    >;
   };
 }
 
@@ -138,6 +146,10 @@ export interface PluginI18NLocale extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::i18n.locale'
+    >;
   };
 }
 
@@ -181,6 +193,10 @@ export interface PluginContentReleasesRelease
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::content-releases.release'
+    >;
   };
 }
 
@@ -221,6 +237,10 @@ export interface PluginContentReleasesReleaseAction
       Schema.Attribute.Private;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::content-releases.release-action'
+    >;
   };
 }
 
@@ -264,6 +284,10 @@ export interface PluginReviewWorkflowsWorkflow
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::review-workflows.workflow'
+    >;
   };
 }
 
@@ -305,6 +329,10 @@ export interface PluginReviewWorkflowsWorkflowStage
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::review-workflows.workflow-stage'
+    >;
   };
 }
 
@@ -343,6 +371,10 @@ export interface PluginUsersPermissionsPermission
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.permission'
+    >;
   };
 }
 
@@ -391,6 +423,10 @@ export interface PluginUsersPermissionsRole
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.role'
+    >;
   };
 }
 
@@ -442,6 +478,10 @@ export interface PluginUsersPermissionsUser
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -466,6 +506,10 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    >;
   };
 }
 
@@ -493,6 +537,35 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::global.global'>;
+  };
+}
+
+export interface ApiHeadingHeading extends Struct.SingleTypeSchema {
+  collectionName: 'headings';
+  info: {
+    singularName: 'heading';
+    pluralName: 'headings';
+    displayName: 'Heading';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::heading.heading'
+    >;
   };
 }
 
@@ -527,6 +600,10 @@ export interface ApiLandingPageLandingPage extends Struct.SingleTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::landing-page.landing-page'
+    >;
   };
 }
 
@@ -562,6 +639,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::page.page'>;
   };
 }
 
@@ -591,6 +669,38 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'>;
+  };
+}
+
+export interface ApiRootLayoutRootLayout extends Struct.SingleTypeSchema {
+  collectionName: 'root_layouts';
+  info: {
+    singularName: 'root-layout';
+    pluralName: 'root-layouts';
+    displayName: 'Root Layout';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    nav: Schema.Attribute.Component<'layout.top-nav', false>;
+    footer: Schema.Attribute.Component<'layout.footer', false>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::root-layout.root-layout'
+    >;
   };
 }
 
@@ -636,6 +746,7 @@ export interface AdminPermission extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::permission'>;
   };
 }
 
@@ -700,6 +811,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::user'>;
   };
 }
 
@@ -747,6 +859,7 @@ export interface AdminRole extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::role'>;
   };
 }
 
@@ -805,6 +918,7 @@ export interface AdminApiToken extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::api-token'>;
   };
 }
 
@@ -843,6 +957,10 @@ export interface AdminApiTokenPermission extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'admin::api-token-permission'
+    >;
   };
 }
 
@@ -898,6 +1016,10 @@ export interface AdminTransferToken extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'admin::transfer-token'
+    >;
   };
 }
 
@@ -937,6 +1059,10 @@ export interface AdminTransferTokenPermission
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'admin::transfer-token-permission'
+    >;
   };
 }
 
@@ -955,9 +1081,11 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::heading.heading': ApiHeadingHeading;
       'api::landing-page.landing-page': ApiLandingPageLandingPage;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
+      'api::root-layout.root-layout': ApiRootLayoutRootLayout;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;

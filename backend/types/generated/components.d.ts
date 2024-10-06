@@ -7,9 +7,7 @@ export interface LayoutTopNav extends Struct.ComponentSchema {
     description: '';
   };
   attributes: {
-    logoText: Schema.Attribute.String;
     navItems: Schema.Attribute.Component<'elements.link', true>;
-    cta: Schema.Attribute.Component<'elements.link', false>;
   };
 }
 
@@ -54,9 +52,10 @@ export interface LayoutFooter extends Struct.ComponentSchema {
   collectionName: 'components_layout_footers';
   info: {
     displayName: 'Footer';
+    description: '';
   };
   attributes: {
-    text: Schema.Attribute.Text;
+    email: Schema.Attribute.Text;
     socialLinks: Schema.Attribute.Component<'elements.link', true>;
   };
 }
@@ -106,12 +105,14 @@ export interface ElementsLink extends Struct.ComponentSchema {
   collectionName: 'components_elements_links';
   info: {
     displayName: 'Link';
+    description: '';
   };
   attributes: {
     href: Schema.Attribute.String;
     text: Schema.Attribute.String;
     isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     isPrimary: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    icon: Schema.Attribute.String;
   };
 }
 

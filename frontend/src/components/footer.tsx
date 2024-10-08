@@ -23,10 +23,10 @@ export function Footer({ data }: Readonly<ApiResponse<ApiRootLayout>>) {
 	const { footer } = data;
 	return (
 		<footer className="mt-5 flex items-center justify-between border-2">
-			<p className="flex items-center gap-3 px-5 py-2 text-sm">
+			<a href={`mailto:${footer.email}`} className="flex items-center gap-3 px-5 py-2 text-sm">
 				<Email />
 				{footer.email}
-			</p>
+			</a>
 			<div className="striped flex h-10 w-full border-l-2 border-r-2"></div>
 			<div className="flex items-center gap-5 px-5 py-2">
 				{footer.socialLinks &&

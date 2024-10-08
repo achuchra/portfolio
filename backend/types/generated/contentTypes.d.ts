@@ -513,6 +513,42 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiExperienceExperience extends Struct.CollectionTypeSchema {
+  collectionName: 'experiences';
+  info: {
+    singularName: 'experience';
+    pluralName: 'experiences';
+    displayName: 'experience';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    company: Schema.Attribute.String & Schema.Attribute.Required;
+    role: Schema.Attribute.String & Schema.Attribute.Required;
+    started: Schema.Attribute.Date & Schema.Attribute.Required;
+    finished: Schema.Attribute.Date;
+    description: Schema.Attribute.Text;
+    stack: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'company'>;
+    previous: Schema.Attribute.String;
+    next: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::experience.experience'
+    >;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -1080,6 +1116,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::category.category': ApiCategoryCategory;
+      'api::experience.experience': ApiExperienceExperience;
       'api::global.global': ApiGlobalGlobal;
       'api::heading.heading': ApiHeadingHeading;
       'api::landing-page.landing-page': ApiLandingPageLandingPage;

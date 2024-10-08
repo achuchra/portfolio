@@ -200,7 +200,7 @@
 	-webkit-text-fill-color: transparent;
 }
 
-svg:hover {
+a svg:hover {
 	stroke: #af527d;
 }
 

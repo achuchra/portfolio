@@ -7,6 +7,11 @@ const nextConfig = {
 				destination: "/home",
 				permanent: true,
 			},
+			{
+				source: "/my-experience",
+				destination: "/my-experience/ncdc",
+				permanent: true,
+			},
 		];
 	},
 	images: {

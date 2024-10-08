@@ -4,8 +4,13 @@ import { cn } from "@/lib/utils";
 import type { NavLink } from "@/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
 
-export const Anchor = ({ href, isExternal, text }: NavLink) => {
+type AnchorProps = {
+	children?: ReactNode;
+} & NavLink;
+
+export const Anchor = ({ href, isExternal, text, children }: AnchorProps) => {
 	const pathname = usePathname();
 	const isActive = pathname?.includes(href) ? "active-link pointer-events-none" : "link";
 
@@ -16,7 +21,7 @@ export const Anchor = ({ href, isExternal, text }: NavLink) => {
 			key={text}
 			target={isExternal ? "_blank" : "_self"}
 		>
-			{text}
+			{text || children}
 		</Link>
 	);
 };

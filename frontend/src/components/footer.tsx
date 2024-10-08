@@ -32,12 +32,13 @@ export function Footer({ data }: Readonly<ApiResponse<ApiRootLayout>>) {
 				{footer.socialLinks &&
 					footer.socialLinks.map((link) => {
 						const { href, isExternal, icon } = link;
+
 						return (
 							<Link
 								href={href}
 								className="text-muted-foreground hover:text-foreground"
 								key={icon}
-								target={isExternal}
+								target={isExternal ? "_blank" : "_self"}
 							>
 								{icon && renderIcon(icon)}
 							</Link>

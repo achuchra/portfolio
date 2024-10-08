@@ -101,3 +101,14 @@ export interface ApiRootLayout {
 		socialLinks: NavLink[];
 	};
 }
+
+export interface ApiExperience {
+	company: string;
+	role: string;
+	started: string;
+	finished: string;
+	description: string;
+	stack: string;
+	previous?: string;
+	next?: string;
+}

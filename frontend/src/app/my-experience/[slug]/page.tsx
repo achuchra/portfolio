@@ -1,7 +1,6 @@
 import { ApiExperience, ApiResponse } from "@/types";
 import { Calendar, ChevronLeft, ChevronRight, Wrench } from "lucide-react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const loadExperience = async (slug: string) => {
 	const { fetchData } = await import("@/lib/fetch");

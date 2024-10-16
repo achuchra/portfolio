@@ -102,6 +102,14 @@ export interface ApiRootLayout {
 	};
 }
 
+export interface ApiHome {
+	firstLine: string;
+	secondLine: string;
+}
+
+export interface ApiAbout {
+	paragraph: Array<{ description: string }>;
+}
 export interface ApiExperience {
 	company: string;
 	role: string;

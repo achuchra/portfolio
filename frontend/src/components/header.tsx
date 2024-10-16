@@ -1,11 +1,8 @@
-import type { ApiResponse, ApiRootLayout, NavLink } from "@/types";
-import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
-import { MobileNavbar } from "@/components/mobile-navbar";
-import { cn } from "@/lib/utils";
-import { headers } from "next/headers";
+import type { ApiResponse, ApiRootLayout } from "@/types";
 import { Anchor } from "@/components/anchor";
+import { Combobox } from "@/components/combobox";
+import { HeaderCombobox } from "@/components/header-combobox";
+import Link from "next/link";
 
 export function Header({ data }: Readonly<ApiResponse<ApiRootLayout>>) {
 	if (!data) return null;
@@ -13,13 +10,21 @@ export function Header({ data }: Readonly<ApiResponse<ApiRootLayout>>) {
 	return (
 		<header className="flex flex-col">
 			<div className="flex flex-col">
-				<h1 className="gradient-mask font-heading text-5xl leading-relaxed tracking-wider">
+				<h1 className="gradient-mask font-heading text-3xl leading-relaxed tracking-wider sm:text-4xl sm:leading-relaxed md:text-5xl md:leading-relaxed">
 					{name}
 				</h1>
 				<h3>{title}</h3>
 			</div>
-			<nav className="flex items-center justify-around pt-5">
+			<nav className="hidden items-center justify-around pt-5 sm:flex">
 				{nav.navItems && nav.navItems.map((item) => <Anchor {...item} />)}
+			</nav>
+			<nav className="relative flex pt-5 sm:hidden">
+				<HeaderCombobox
+					items={nav.navItems.map((navItem) => ({
+						label: navItem.text || "",
+						value: navItem.href,
+					}))}
+				/>
 			</nav>
 			{/* {cta && (
           <div className="hidden items-center gap-2 md:flex">

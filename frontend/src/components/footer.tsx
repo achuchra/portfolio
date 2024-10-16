@@ -22,12 +22,12 @@ export function Footer({ data }: Readonly<ApiResponse<ApiRootLayout>>) {
 	if (!data) return null;
 	const { footer } = data;
 	return (
-		<footer className="mt-5 flex items-center justify-between border-2">
-			<a href={`mailto:${footer.email}`} className="flex items-center gap-3 px-5 py-2 text-sm">
+		<footer className="mt-5 flex flex-col items-center justify-between border-2 sm:flex-row">
+			<a href={`mailto:${footer.email}`} className="link flex items-center gap-3 px-5 py-2 text-sm">
 				<Email />
 				{footer.email}
 			</a>
-			<div className="striped flex h-10 w-full border-l-2 border-r-2"></div>
+			<div className="striped hidden h-[2.6rem] w-full border-l-2 border-r-2 sm:flex"></div>
 			<div className="flex items-center gap-5 px-5 py-2">
 				{footer.socialLinks &&
 					footer.socialLinks.map((link) => {

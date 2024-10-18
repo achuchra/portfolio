@@ -159,6 +159,31 @@
 	@apply mb-4 rounded-lg border-yellow-500 bg-yellow-100 px-4 py-2 text-yellow-700;
 }
 
+html {
+	max-height: 100dvh;
+}
+
+.gutter {
+	scrollbar-gutter: stable both-edges;
+}
+*::-webkit-scrollbar {
+	-webkit-appearance: none;
+}
+
+*::-webkit-scrollbar:vertical {
+	width: 0.2rem;
+}
+
+*::-webkit-scrollbar:horizontal {
+	height: 0.2rem;
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: none;
+	border: none;
+	background: -webkit-linear-gradient(0deg, #af527d, #784b8f);
+}
+
 .striped {
 	background: repeating-linear-gradient(
 		-45deg,
@@ -177,27 +202,45 @@
 	-webkit-text-fill-color: transparent;
 }
 
-.active-link {
-	border-top: 2px solid;
-	border-left: 2px solid;
-	border-right: 2px solid;
-	background: #fffef0;
-	z-index: 1;
-	cursor: normal;
-}
-
 .link {
-	border-top: 2px solid transparent;
-	border-left: 2px solid transparent;
-	border-right: 2px solid transparent;
 	cursor: pointer;
-}
-
-.link:hover {
 	background: -webkit-linear-gradient(0deg, #af527d, #784b8f);
 	-webkit-background-clip: text;
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.link:hover {
+	text-decoration: underline;
+	text-decoration-color: #af527d;
+	text-underline-offset: 0.3rem;
+	text-decoration-thickness: 0.1rem;
+}
+
+.nav-link {
+	border-top: 2px solid transparent;
+	border-left: 2px solid transparent;
+	border-right: 2px solid transparent;
+	background: var(--primary-foreground);
+	-webkit-background-clip: text;
+	background-clip: text;
+}
+
+.nav-link:hover {
+	background: -webkit-linear-gradient(0deg, #af527d, #784b8f);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	cursor: pointer;
+}
+
+.active-nav-link {
+	border-top: 2px solid;
+	border-left: 2px solid;
+	border-right: 2px solid;
+	background: var(--background);
+	z-index: 1;
+	cursor: normal;
 }
 
 a svg:hover {
@@ -208,7 +251,6 @@ a svg:hover {
 	position: relative;
 	border: 2px solid;
 	top: -2px;
-	background: #fffef0;
 }
 
 .content:before {
@@ -221,6 +263,6 @@ a svg:hover {
 div[data-radix-popper-content-wrapper] {
 	position: absolute !important;
 	width: 100%;
-	top: 100% !important;
+	top: calc(100% - 2px) !important;
 	transform: none !important;
 }

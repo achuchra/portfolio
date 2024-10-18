@@ -85,6 +85,19 @@ export interface LayoutCardGrid extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsReference extends Struct.ComponentSchema {
+  collectionName: 'components_elements_references';
+  info: {
+    displayName: 'Reference';
+    icon: 'discuss';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    link: Schema.Attribute.Component<'elements.link', false>;
+  };
+}
+
 export interface ElementsPriceCard extends Struct.ComponentSchema {
   collectionName: 'components_elements_price_cards';
   info: {
@@ -120,9 +133,10 @@ export interface ElementsFeature extends Struct.ComponentSchema {
   collectionName: 'components_elements_features';
   info: {
     displayName: 'Feature';
+    description: '';
   };
   attributes: {
-    description: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
   };
 }
 
@@ -150,6 +164,7 @@ declare module '@strapi/strapi' {
       'layout.footer': LayoutFooter;
       'layout.content-with-image': LayoutContentWithImage;
       'layout.card-grid': LayoutCardGrid;
+      'elements.reference': ElementsReference;
       'elements.price-card': ElementsPriceCard;
       'elements.link': ElementsLink;
       'elements.feature': ElementsFeature;

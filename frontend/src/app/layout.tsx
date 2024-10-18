@@ -61,15 +61,13 @@ export default async function RootLayout({
 		<html lang="en">
 			<body
 				className={cn(
-					"flex h-screen flex-col p-5 pt-0 font-sans antialiased",
+					"flex h-svh flex-col p-5 pt-0 font-sans antialiased",
 					fontSans.variable,
 					fontHeading.variable,
 				)}
 			>
 				<Header {...data} />
-				<main className="content h-full overflow-scroll p-5">
-					<div className="h-full overflow-scroll">{children}</div>
-				</main>
+				<main className="content h-full overflow-hidden p-5">{children}</main>
 				<Footer {...data} />
 			</body>
 		</html>

@@ -119,4 +119,21 @@ export interface ApiExperience {
 	stack: string;
 	previous?: string;
 	next?: string;
+	references: Reference[];
+	paragraph: Array<{ description: string }>;
+}
+
+export interface ApiProject {
+	title: string;
+	description: string;
+	stack: string;
+	previous?: string;
+	next?: string;
+	references: Reference[];
+	paragraph: Array<{ description: string }>;
+}
+
+export interface Reference {
+	title: string;
+	link: NavLink;
 }

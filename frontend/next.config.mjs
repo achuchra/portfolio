@@ -8,8 +8,13 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
-				source: "/my-experience",
-				destination: "/my-experience/ncdc",
+				source: "/experience",
+				destination: "/experience/ncdc",
+				permanent: true,
+			},
+			{
+				source: "/projects",
+				destination: "/projects/this",
 				permanent: true,
 			},
 		];

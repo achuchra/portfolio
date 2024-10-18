@@ -11,6 +11,9 @@ const config = {
 		"./src/**/*.{ts,tsx}",
 	],
 	prefix: "",
+	variants: {
+		textColor: ["responsive", "hover", "focus", "group-hover"],
+	},
 	theme: {
 		container: {
 			center: true,

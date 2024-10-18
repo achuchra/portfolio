@@ -491,6 +491,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     singularName: 'about';
     pluralName: 'abouts';
     displayName: 'about';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -554,10 +555,12 @@ export interface ApiExperienceExperience extends Struct.CollectionTypeSchema {
     started: Schema.Attribute.Date & Schema.Attribute.Required;
     finished: Schema.Attribute.Date;
     description: Schema.Attribute.Text;
-    stack: Schema.Attribute.String;
+    stack: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'company'>;
     previous: Schema.Attribute.String;
     next: Schema.Attribute.String;
+    paragraph: Schema.Attribute.Component<'elements.feature', true>;
+    references: Schema.Attribute.Component<'elements.reference', true>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -755,6 +758,40 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'>;
+  };
+}
+
+export interface ApiProjectProject extends Struct.CollectionTypeSchema {
+  collectionName: 'projects';
+  info: {
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'Project';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'title'>;
+    paragraph: Schema.Attribute.Component<'elements.feature', true>;
+    previous: Schema.Attribute.String;
+    next: Schema.Attribute.String;
+    stack: Schema.Attribute.Text;
+    references: Schema.Attribute.Component<'elements.reference', true>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project.project'
+    >;
   };
 }
 
@@ -1173,6 +1210,7 @@ declare module '@strapi/strapi' {
       'api::landing-page.landing-page': ApiLandingPageLandingPage;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
+      'api::project.project': ApiProjectProject;
       'api::root-layout.root-layout': ApiRootLayoutRootLayout;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;

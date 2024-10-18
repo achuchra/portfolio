@@ -1,12 +1,13 @@
 {
   "collectionName": "components_elements_features",
   "info": {
-    "displayName": "Feature"
+    "displayName": "Feature",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "description": {
-      "type": "string"
+      "type": "text"
     }
   }
 }

@@ -31,7 +31,7 @@
       "type": "text"
     },
     "stack": {
-      "type": "string"
+      "type": "text"
     },
     "slug": {
       "type": "uid",
@@ -42,6 +42,16 @@
     },
     "next": {
       "type": "string"
+    },
+    "paragraph": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.feature"
+    },
+    "references": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.reference"
     }
   }
 }

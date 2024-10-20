@@ -638,6 +638,7 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     singularName: 'home';
     pluralName: 'homes';
     displayName: 'home';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -645,6 +646,9 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
   attributes: {
     firstLine: Schema.Attribute.String;
     secondLine: Schema.Attribute.String;
+    bgMobile: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    bgTablet: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    bgDesktop: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

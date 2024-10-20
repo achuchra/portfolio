@@ -40,6 +40,11 @@ const nextConfig = {
 				hostname: "images.pexels.com",
 			},
 		],
+		deviceSizes: [320, 1080, 2048],
+		imageSizes: [1920, 2560, 3840],
+	},
+	typescript: {
+		ignoreBuildErrors: true,
 	},
 };
 

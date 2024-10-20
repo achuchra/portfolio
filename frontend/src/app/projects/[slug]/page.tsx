@@ -1,10 +1,21 @@
 import { Anchor } from "@/components/anchor";
-import { ApiExperience, ApiProject, ApiResponse } from "@/types";
-import { AtSign, Calendar, ChevronLeft, ChevronRight, Speaker, Wrench } from "lucide-react";
+import { ApiProject, ApiResponse } from "@/types";
+import { AtSign, ChevronLeft, ChevronRight, Wrench } from "lucide-react";
 import Link from "next/link";
 import qs from "qs";
 
-const loadExperience = async (slug: string) => {
+export async function generateStaticParams() {
+	const { fetchData } = await import("@/lib/fetch");
+	const baseUrl = (await import("@/lib/utils")).getStrapiURL();
+
+	const path = "/api/projects";
+	const url = new URL(path, baseUrl);
+
+	const data = await fetchData<ApiResponse<ApiProject[]>>(url.href);
+	return data.data.map(({ slug }) => ({ slug }));
+}
+
+const loadProject = async (slug: string) => {
 	const { fetchData } = await import("@/lib/fetch");
 	const baseUrl = (await import("@/lib/utils")).getStrapiURL();
 
@@ -30,8 +41,17 @@ const loadExperience = async (slug: string) => {
 	return data;
 };
 
-export default async function MyExperience({ params: { slug } }: { params: { slug: string } }) {
-	const { data } = await loadExperience(slug);
+export async function generateMetadata({ params: { slug } }: { params: { slug: string } }) {
+	const { data } = await loadProject(slug);
+
+	return {
+		title: `${data.title} - additional activity`,
+		description: data.description,
+	};
+}
+
+export default async function MyProjects({ params: { slug } }: { params: { slug: string } }) {
+	const { data } = await loadProject(slug);
 
 	return (
 		<>
@@ -43,9 +63,11 @@ export default async function MyExperience({ params: { slug } }: { params: { slu
 				)}
 
 				<section className="relative mx-auto w-full pt-0 sm:w-[80%] sm:pt-10">
-					<h1 className="pb-5 text-4xl font-bold">{data.title}</h1>
-					{data.paragraph.map((paragraphItem) => (
-						<p className="pb-5">{paragraphItem.description}</p>
+					<h1 className="pb-5 text-3xl font-bold md:text-4xl">{data.title}</h1>
+					{data.paragraph.map((paragraphItem, index) => (
+						<p key={index} className="pb-5">
+							{paragraphItem.description}
+						</p>
 					))}
 					<p className="flex items-start gap-2 pb-5">
 						<Wrench size={24} className="shrink-0" />
@@ -55,8 +77,8 @@ export default async function MyExperience({ params: { slug } }: { params: { slu
 						<section about="references" className="flex items-start gap-2">
 							<AtSign size={24} className="shrink-0" />
 							<div>
-								{data.references.map((reference) => (
-									<p className="pb-5">
+								{data.references.map((reference, index) => (
+									<p key={index} className="pb-5">
 										{reference.title}
 										<Anchor {...reference.link} />
 									</p>

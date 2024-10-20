@@ -137,6 +137,7 @@ export interface ElementsFeature extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
+    link: Schema.Attribute.Component<'elements.link', false>;
   };
 }
 

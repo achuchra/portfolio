@@ -105,10 +105,28 @@ export interface ApiRootLayout {
 export interface ApiHome {
 	firstLine: string;
 	secondLine: string;
+	bgMobile: {
+		name: string;
+		width: number;
+		height: number;
+		url: string;
+	};
+	bgTablet: {
+		name: string;
+		width: number;
+		height: number;
+		url: string;
+	};
+	bgDesktop: {
+		name: string;
+		width: number;
+		height: number;
+		url: string;
+	};
 }
 
 export interface ApiAbout {
-	paragraph: Array<{ description: string }>;
+	paragraph: Array<{ description: string; link?: NavLink }>;
 }
 export interface ApiExperience {
 	company: string;
@@ -121,6 +139,7 @@ export interface ApiExperience {
 	next?: string;
 	references: Reference[];
 	paragraph: Array<{ description: string }>;
+	slug: string;
 }
 
 export interface ApiProject {
@@ -131,6 +150,7 @@ export interface ApiProject {
 	next?: string;
 	references: Reference[];
 	paragraph: Array<{ description: string }>;
+	slug: string;
 }
 
 export interface Reference {

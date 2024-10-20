@@ -95,7 +95,7 @@ export default async function MyProjects({ params: { slug } }: { params: { slug:
 				)}
 			</div>
 
-			<section about="navigation" className="relative flex h-[5%] border-t-2 sm:hidden">
+			<section about="navigation" className="relative flex h-[5%] border-t-[1px] sm:hidden">
 				{data.previous && (
 					<Link href={data.previous} className="absolute left-[-0.5rem] top-2">
 						<ChevronLeft size={24} />

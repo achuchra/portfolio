@@ -36,7 +36,6 @@ export const metadata: Metadata = {
 
 export default async function AboutMe() {
 	const { data } = await fetchAboutPage();
-	console.log(data);
 
 	return (
 		<section className="relative h-full w-full overflow-scroll">

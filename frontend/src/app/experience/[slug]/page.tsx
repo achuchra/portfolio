@@ -37,8 +37,7 @@ const loadExperience = async (slug: string) => {
 	});
 	url.search = query;
 
-	const data = await fetchData<ApiResponse<ApiExperience>>(url.href);
-	return data;
+	return await fetchData<ApiResponse<ApiExperience>>(url.href);
 };
 
 export async function generateMetadata({ params: { slug } }: { params: { slug: string } }) {
@@ -100,7 +99,7 @@ export default async function MyExperience({ params: { slug } }: { params: { slu
 				)}
 			</div>
 
-			<section about="navigation" className="relative flex h-[5%] border-t-2 sm:hidden">
+			<section about="navigation" className="relative flex h-[5%] border-t-[1px] sm:hidden">
 				{data.previous && (
 					<Link href={data.previous} className="absolute left-[-0.5rem] top-2">
 						<ChevronLeft size={24} />

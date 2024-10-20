@@ -31,7 +31,10 @@ type AnchorProps = {
 
 export const Anchor = ({ href, isExternal, text, children, type = "default" }: AnchorProps) => {
 	const pathname = usePathname();
-	const isActive = useMemo(() => pathname?.includes(href), [pathname]);
+	const pathnameSegments = pathname?.split("/") || [];
+	const cleanHref = href?.replaceAll("/", "");
+
+	const isActive = useMemo(() => pathnameSegments.includes(cleanHref), [pathname]);
 
 	return (
 		<Link

@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import type { NavLink } from "@/types";
 import { cva } from "class-variance-authority";
+import { SquareArrowOutUpRightIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useMemo } from "react";
@@ -43,7 +44,14 @@ export const Anchor = ({ href, isExternal, text, children, type = "default" }: A
 			key={text}
 			target={isExternal ? "_blank" : "_self"}
 		>
-			{text || children}
+			{isExternal ? (
+				<>
+					{text}
+					<SquareArrowOutUpRightIcon size={16} className="inline w-6 pb-[2px]" />
+				</>
+			) : (
+				text || children
+			)}
 		</Link>
 	);
 };

@@ -1,3 +1,4 @@
+import { Anchor } from "@/components/anchor";
 import { getStrapiURL } from "@/lib/utils";
 import { ApiAbout, ApiResponse } from "@/types";
 import { Metadata } from "next";
@@ -43,11 +44,7 @@ export default async function AboutMe() {
 				{data.paragraph.map((paragraphItem, index) => (
 					<p key={index} className="pb-5">
 						{paragraphItem.description}
-						{paragraphItem.link ? (
-							<Link href={paragraphItem.link.href} className="link">
-								{paragraphItem.link.text}
-							</Link>
-						) : null}
+						{paragraphItem.link ? <Anchor {...paragraphItem.link} /> : null}
 					</p>
 				))}
 			</div>

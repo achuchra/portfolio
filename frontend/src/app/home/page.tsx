@@ -33,33 +33,27 @@ export default async function Home() {
 					</Link>
 				</p>
 			</div>
-			{data.bgMobile ? (
-				<Image
-					src="/images/home-bg-mobile.png"
-					alt={data.bgMobile.name}
-					width={data.bgMobile.width}
-					height={data.bgMobile.height}
-					className="absolute bottom-0 left-0 z-[-1] sm:hidden"
-				></Image>
-			) : null}
-			{data.bgTablet ? (
-				<Image
-					src="/images/home-bg-tablet.png"
-					alt={data.bgTablet.name}
-					width={data.bgTablet.width}
-					height={data.bgTablet.height}
-					className="absolute bottom-0 left-0 z-[-1] hidden sm:block lg:hidden"
-				></Image>
-			) : null}
-			{data.bgDesktop ? (
-				<Image
-					src="/images/home-bg-desktop.png"
-					alt={data.bgDesktop.name}
-					width={data.bgDesktop.width}
-					height={data.bgDesktop.height}
-					className="absolute bottom-0 left-0 z-[-1] hidden lg:block"
-				></Image>
-			) : null}
+			<Image
+				src="/images/home-bg-mobile.png"
+				alt="bg-mobile"
+				width={1080}
+				height={1920}
+				className="absolute bottom-0 left-0 z-[-1] sm:hidden"
+			></Image>
+			<Image
+				src="/images/home-bg-tablet.png"
+				alt="bg-tablet"
+				width={2560}
+				height={1080}
+				className="absolute bottom-0 left-0 z-[-1] hidden sm:block lg:hidden"
+			></Image>
+			<Image
+				src="/images/home-bg-desktop.png"
+				alt="bg-desktop"
+				width={3840}
+				height={2560}
+				className="absolute bottom-0 left-0 z-[-1] hidden lg:block"
+			></Image>
 		</>
 	);
 }

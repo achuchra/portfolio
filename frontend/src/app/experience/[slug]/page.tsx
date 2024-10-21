@@ -83,7 +83,7 @@ export default async function MyExperience({ params: { slug } }: { params: { slu
 							<div>
 								{data.references.map((reference, index) => (
 									<p key={index} className="pb-5">
-										{reference.title}
+										<span>{reference.title}</span>
 										<Anchor {...reference.link} />
 									</p>
 								))}

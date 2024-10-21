@@ -243,7 +243,8 @@ html {
 	cursor: normal;
 }
 
-a svg:hover {
+a.link svg,
+a:hover svg {
 	stroke: #af527d;
 }
 

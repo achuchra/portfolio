@@ -149,7 +149,7 @@ export interface ApiProject {
 	previous?: string;
 	next?: string;
 	references: Reference[];
-	paragraph: Array<{ description: string }>;
+	paragraph: Array<{ description: string; link?: NavLink }>;
 	slug: string;
 }
 

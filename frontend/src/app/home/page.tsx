@@ -25,8 +25,8 @@ export default async function Home() {
 	return (
 		<>
 			<div className="flex h-[50%] flex-col items-center justify-center">
-				<p className="text-xl">{data.firstLine}</p>
-				<p className="text-xl">
+				<p className="text-2xl">{data.firstLine}</p>
+				<p className="text-2xl">
 					{data.secondLine}{" "}
 					<Link className="link" href={"/about-me"}>
 						/about me

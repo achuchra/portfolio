@@ -2,6 +2,7 @@ import { Anchor } from "@/components/anchor";
 import { ApiProject, ApiResponse } from "@/types";
 import { AtSign, ChevronLeft, ChevronRight, Wrench } from "lucide-react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import qs from "qs";
 
 export async function generateStaticParams() {
@@ -11,7 +12,12 @@ export async function generateStaticParams() {
 	const path = "/api/projects";
 	const url = new URL(path, baseUrl);
 
-	const data = await fetchData<ApiResponse<ApiProject[]>>(url.href);
+	const data = await fetchData<ApiResponse<ApiProject[]>>(url.href).catch(() => {
+		return {
+			data: [],
+		};
+	});
+
 	return data.data.map(({ slug }) => ({ slug }));
 }
 
@@ -26,6 +32,9 @@ const loadProject = async (slug: string) => {
 		populate: {
 			paragraph: {
 				populate: "*",
+				link: {
+					populate: "*",
+				},
 			},
 			references: {
 				populate: "*",
@@ -37,7 +46,7 @@ const loadProject = async (slug: string) => {
 	});
 	url.search = query;
 
-	const data = await fetchData<ApiResponse<ApiProject>>(url.href);
+	const data = await fetchData<ApiResponse<ApiProject>>(url.href).catch(notFound);
 	return data;
 };
 
@@ -45,7 +54,7 @@ export async function generateMetadata({ params: { slug } }: { params: { slug: s
 	const { data } = await loadProject(slug);
 
 	return {
-		title: `${data.title} - additional activity`,
+		title: `Andrzej Chuchra - ${data.title} project`,
 		description: data.description,
 	};
 }
@@ -55,7 +64,7 @@ export default async function MyProjects({ params: { slug } }: { params: { slug:
 
 	return (
 		<>
-			<div className="h-[95%] overflow-scroll sm:h-full">
+			<div className="h-[95%] overflow-y-scroll sm:h-full">
 				{data.previous && (
 					<Link href={data.previous} className="left-0 top-[45%] hidden sm:absolute sm:block">
 						<ChevronLeft size={64} />
@@ -65,8 +74,9 @@ export default async function MyProjects({ params: { slug } }: { params: { slug:
 				<section className="relative mx-auto w-full pt-0 sm:w-[80%] sm:pt-10">
 					<h1 className="pb-5 text-3xl font-bold md:text-4xl">{data.title}</h1>
 					{data.paragraph.map((paragraphItem, index) => (
-						<p key={index} className="pb-5">
+						<p key={index} className="pb-5 text-xl">
 							{paragraphItem.description}
+							{paragraphItem.link ? <Anchor {...paragraphItem.link} /> : null}
 						</p>
 					))}
 					<p className="flex items-start gap-2 pb-5">

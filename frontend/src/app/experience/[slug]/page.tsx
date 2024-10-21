@@ -2,6 +2,7 @@ import { Anchor } from "@/components/anchor";
 import { ApiExperience, ApiResponse } from "@/types";
 import { AtSign, Calendar, ChevronLeft, ChevronRight, Wrench } from "lucide-react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import qs from "qs";
 
 export async function generateStaticParams() {
@@ -11,7 +12,12 @@ export async function generateStaticParams() {
 	const path = "/api/experiences";
 	const url = new URL(path, baseUrl);
 
-	const data = await fetchData<ApiResponse<ApiExperience[]>>(url.href);
+	const data = await fetchData<ApiResponse<ApiExperience[]>>(url.href).catch(() => {
+		return {
+			data: [],
+		};
+	});
+
 	return data.data.map(({ slug }) => ({ slug }));
 }
 
@@ -37,14 +43,16 @@ const loadExperience = async (slug: string) => {
 	});
 	url.search = query;
 
-	return await fetchData<ApiResponse<ApiExperience>>(url.href);
+	return await fetchData<ApiResponse<ApiExperience>>(url.href).catch((error) => {
+		notFound();
+	});
 };
 
 export async function generateMetadata({ params: { slug } }: { params: { slug: string } }) {
 	const { data } = await loadExperience(slug);
 
 	return {
-		title: `${data.company} - experience`,
+		title: `Andrzej Chuchra - experience at ${data.company}`,
 		description: data.role,
 	};
 }
@@ -69,7 +77,7 @@ export default async function MyExperience({ params: { slug } }: { params: { slu
 						{data.started} - {data.finished || "Present"}
 					</p>
 					{data.paragraph.map((paragraphItem, index) => (
-						<p key={index} className="pb-5">
+						<p key={index} className="pb-5 text-xl">
 							{paragraphItem.description}
 						</p>
 					))}

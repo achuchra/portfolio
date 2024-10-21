@@ -27,11 +27,13 @@ const fetchAboutPage = async () => {
 };
 
 export const metadata: Metadata = {
-	title: "About me",
-	description: "Learn more about me",
+	title: "Andrzej Chuchra - About me",
+	description:
+		"Learn more about me, my experience in the IT industry, and a bit of a private area regarding my hobbies and interests.",
 	openGraph: {
-		title: "About me",
-		description: "Learn more about me",
+		title: "Andrzej Chuchra - About me",
+		description:
+			"Learn more about me, my experience in the IT industry, and a bit of a private area regarding my hobbies and interests.",
 	},
 };
 
@@ -42,7 +44,7 @@ export default async function AboutMe() {
 		<section className="relative h-full w-full overflow-scroll">
 			<div className="mx-auto w-full pt-0 sm:w-[80%] sm:pt-10">
 				{data.paragraph.map((paragraphItem, index) => (
-					<p key={index} className="pb-5">
+					<p key={index} className="pb-5 text-xl">
 						{paragraphItem.description}
 						{paragraphItem.link ? <Anchor {...paragraphItem.link} /> : null}
 					</p>

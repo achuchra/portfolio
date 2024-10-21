@@ -12,7 +12,12 @@ export default factories.createCoreController(
       const { id } = ctx.params;
       const entity = await strapi.db.query("api::project.project").findOne({
         where: { slug: id.toLowerCase() },
-        populate: ["paragraph", "references", "references.link"],
+        populate: [
+          "paragraph",
+          "paragraph.link",
+          "references",
+          "references.link",
+        ],
       });
       const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
 

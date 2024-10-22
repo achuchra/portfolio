@@ -16,7 +16,7 @@ const anchorVariants = cva("w-full cursor-auto p-2 text-center", {
 		},
 		type: {
 			default: "link",
-			navlink: "nav-link",
+			navlink: "nav-link border-2 border-b-0 border-transparent",
 		},
 	},
 	defaultVariants: {

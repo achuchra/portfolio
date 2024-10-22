@@ -218,9 +218,9 @@ html {
 }
 
 .nav-link {
-	border-top: 2px solid transparent;
+	/* border-top: 2px solid transparent;
 	border-left: 2px solid transparent;
-	border-right: 2px solid transparent;
+	border-right: 2px solid transparent; */
 	background: var(--primary-foreground);
 	-webkit-background-clip: text;
 	background-clip: text;

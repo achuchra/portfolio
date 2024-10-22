@@ -24,8 +24,9 @@ const fontHeading = Abril_Fatface({
 });
 
 export const metadata: Metadata = {
-	title: "Andrzej Chuchra - Home",
-	description: "Senior Front-end Developer webpage",
+	title: "Andrzej Chuchra - Senior Front-end Developer",
+	description:
+		"Andrzej Chuchra's webpage. Senior Front-end Developer with over 5 years of experience.",
 };
 
 const fetchRootLayout = async () => {

@@ -8,15 +8,15 @@ export function Header({ data }: Readonly<ApiResponse<ApiRootLayout>>) {
 	return (
 		<header className="flex flex-col">
 			<div className="flex flex-col items-center sm:flex-row sm:justify-between">
-				<h1 className="gradient-mask font-heading text-3xl leading-relaxed tracking-wider sm:text-4xl sm:leading-relaxed md:text-5xl md:leading-relaxed">
+				<h1 className="gradient-mask font-heading text-3xl leading-relaxed tracking-wider sm:text-4xl sm:leading-relaxed lg:text-5xl lg:leading-relaxed">
 					{name}
 				</h1>
-				<h2 className="text-l md:text-xl">{title}</h2>
+				<h2 className="text-l lg:text-xl">{title}</h2>
 			</div>
 			<nav className="hidden items-center justify-around pt-2 sm:flex">
 				{nav.navItems && nav.navItems.map((item) => <Anchor {...item} type="navlink" />)}
 			</nav>
-			<nav className="relative flex pt-5 sm:hidden">
+			<nav className="relative flex pt-2 sm:hidden sm:pt-5">
 				<HeaderCombobox
 					items={nav.navItems.map((navItem) => ({
 						label: navItem.text || "",

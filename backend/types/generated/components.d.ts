@@ -1,5 +1,75 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
+export interface ElementsReference extends Struct.ComponentSchema {
+  collectionName: 'components_elements_references';
+  info: {
+    displayName: 'Reference';
+    icon: 'discuss';
+    description: '';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    link: Schema.Attribute.Component<'elements.link', false>;
+  };
+}
+
+export interface ElementsPriceCard extends Struct.ComponentSchema {
+  collectionName: 'components_elements_price_cards';
+  info: {
+    displayName: 'Price Card';
+    description: '';
+  };
+  attributes: {
+    selected: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    heading: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    price: Schema.Attribute.String;
+    feature: Schema.Attribute.Component<'elements.feature', true>;
+    link: Schema.Attribute.Component<'elements.link', false>;
+  };
+}
+
+export interface ElementsLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_links';
+  info: {
+    displayName: 'Link';
+    description: '';
+  };
+  attributes: {
+    href: Schema.Attribute.String;
+    text: Schema.Attribute.String;
+    isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    isPrimary: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    icon: Schema.Attribute.String;
+  };
+}
+
+export interface ElementsFeature extends Struct.ComponentSchema {
+  collectionName: 'components_elements_features';
+  info: {
+    displayName: 'Feature';
+    description: '';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    link: Schema.Attribute.Component<'elements.link', false>;
+  };
+}
+
+export interface ElementsCard extends Struct.ComponentSchema {
+  collectionName: 'components_elements_cards';
+  info: {
+    displayName: 'Card';
+  };
+  attributes: {
+    icon: Schema.Attribute.Enumeration<
+      ['Frame', 'Download', 'Globe', 'Sparkles', 'LayoutPanelLeft', 'Palette']
+    >;
+    heading: Schema.Attribute.String;
+    text: Schema.Attribute.Text;
+  };
+}
+
 export interface LayoutTopNav extends Struct.ComponentSchema {
   collectionName: 'components_layout_top_navs';
   info: {
@@ -85,79 +155,14 @@ export interface LayoutCardGrid extends Struct.ComponentSchema {
   };
 }
 
-export interface ElementsReference extends Struct.ComponentSchema {
-  collectionName: 'components_elements_references';
-  info: {
-    displayName: 'Reference';
-    icon: 'discuss';
-    description: '';
-  };
-  attributes: {
-    title: Schema.Attribute.String;
-    link: Schema.Attribute.Component<'elements.link', false>;
-  };
-}
-
-export interface ElementsPriceCard extends Struct.ComponentSchema {
-  collectionName: 'components_elements_price_cards';
-  info: {
-    displayName: 'Price Card';
-    description: '';
-  };
-  attributes: {
-    selected: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    heading: Schema.Attribute.String;
-    description: Schema.Attribute.Text;
-    price: Schema.Attribute.String;
-    feature: Schema.Attribute.Component<'elements.feature', true>;
-    link: Schema.Attribute.Component<'elements.link', false>;
-  };
-}
-
-export interface ElementsLink extends Struct.ComponentSchema {
-  collectionName: 'components_elements_links';
-  info: {
-    displayName: 'Link';
-    description: '';
-  };
-  attributes: {
-    href: Schema.Attribute.String;
-    text: Schema.Attribute.String;
-    isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    isPrimary: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    icon: Schema.Attribute.String;
-  };
-}
-
-export interface ElementsFeature extends Struct.ComponentSchema {
-  collectionName: 'components_elements_features';
-  info: {
-    displayName: 'Feature';
-    description: '';
-  };
-  attributes: {
-    description: Schema.Attribute.Text;
-    link: Schema.Attribute.Component<'elements.link', false>;
-  };
-}
-
-export interface ElementsCard extends Struct.ComponentSchema {
-  collectionName: 'components_elements_cards';
-  info: {
-    displayName: 'Card';
-  };
-  attributes: {
-    icon: Schema.Attribute.Enumeration<
-      ['Frame', 'Download', 'Globe', 'Sparkles', 'LayoutPanelLeft', 'Palette']
-    >;
-    heading: Schema.Attribute.String;
-    text: Schema.Attribute.Text;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'elements.reference': ElementsReference;
+      'elements.price-card': ElementsPriceCard;
+      'elements.link': ElementsLink;
+      'elements.feature': ElementsFeature;
+      'elements.card': ElementsCard;
       'layout.top-nav': LayoutTopNav;
       'layout.section-heading': LayoutSectionHeading;
       'layout.price-grid': LayoutPriceGrid;
@@ -165,11 +170,6 @@ declare module '@strapi/strapi' {
       'layout.footer': LayoutFooter;
       'layout.content-with-image': LayoutContentWithImage;
       'layout.card-grid': LayoutCardGrid;
-      'elements.reference': ElementsReference;
-      'elements.price-card': ElementsPriceCard;
-      'elements.link': ElementsLink;
-      'elements.feature': ElementsFeature;
-      'elements.card': ElementsCard;
     }
   }
 }

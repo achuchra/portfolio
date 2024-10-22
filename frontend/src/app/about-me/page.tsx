@@ -1,41 +1,71 @@
-import { Anchor } from "@/components/anchor";
+import { CardGrid } from "@/components/card-grid";
+import ContentWithImage from "@/components/content-with-image";
+import { Feature } from "@/components/feature";
+import { Hero } from "@/components/hero";
+import { SectionHeading } from "@/components/section-heading";
 import { getStrapiURL } from "@/lib/utils";
-import { ApiAbout, ApiResponse } from "@/types";
-import { Metadata } from "next";
-import Link from "next/link";
+import { ApiAboutPage, ApiResponse, Block } from "@/types";
 import qs from "qs";
 
 const fetchAboutPage = async () => {
 	const { fetchData } = await import("@/lib/fetch");
-	const path = "/api/about";
+	const path = "/api/pages/about-me";
 	const baseUrl = getStrapiURL();
 	const url = new URL(path, baseUrl);
 
 	const query = qs.stringify({
 		populate: {
-			paragraph: {
-				populate: "*",
-				link: {
-					populate: "*",
+			blocks: {
+				on: {
+					"layout.section-heading": {
+						populate: "*",
+					},
+					"elements.feature": {
+						populate: {
+							populate: "*",
+							link: {
+								populate: "*",
+							},
+						},
+					},
 				},
 			},
 		},
 	});
 	url.search = query;
 
-	return await fetchData<ApiResponse<ApiAbout>>(url.href);
+	return await fetchData<ApiResponse<ApiAboutPage>>(url.href);
 };
 
-export const metadata: Metadata = {
-	title: "Andrzej Chuchra - About me",
-	description:
-		"Learn more about me, my experience in the IT industry, and a bit of a private area regarding my hobbies and interests.",
-	openGraph: {
-		title: "Andrzej Chuchra - About me",
-		description:
-			"Learn more about me, my experience in the IT industry, and a bit of a private area regarding my hobbies and interests.",
-	},
-};
+function BlockRenderer(block: Block) {
+	switch (block.__component) {
+		case "layout.hero":
+			return <Hero key={block.id} {...block} />;
+		case "layout.card-grid":
+			return <CardGrid key={block.id} {...block} />;
+		case "layout.section-heading":
+			return <SectionHeading key={block.id} {...block} />;
+		case "layout.content-with-image":
+			return <ContentWithImage key={block.id} {...block} />;
+		case "elements.feature":
+			return <Feature key={block.id} {...block} />;
+		default:
+			return null;
+	}
+}
+
+export async function generateMetadata() {
+	const { data } = await fetchAboutPage();
+
+	return {
+		title: data.title,
+		description: data.description,
+		openGraph: {
+			title: data.title,
+			description: data.description,
+		},
+	};
+}
 
 export default async function AboutMe() {
 	const { data } = await fetchAboutPage();
@@ -43,12 +73,7 @@ export default async function AboutMe() {
 	return (
 		<section className="relative h-full w-full overflow-scroll">
 			<div className="mx-auto w-full pt-0 sm:w-[80%] sm:pt-10">
-				{data.paragraph.map((paragraphItem, index) => (
-					<p key={index} className="pb-5 text-xl">
-						{paragraphItem.description}
-						{paragraphItem.link ? <Anchor {...paragraphItem.link} /> : null}
-					</p>
-				))}
+				{(data.blocks || []).map((block) => BlockRenderer(block))}
 			</div>
 		</section>
 	);

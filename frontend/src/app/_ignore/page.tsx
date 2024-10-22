@@ -7,6 +7,7 @@ import { Hero } from "@/components/hero";
 import { CardGrid } from "@/components/card-grid";
 import { SectionHeading } from "@/components/section-heading";
 import ContentWithImage from "@/components/content-with-image";
+import { Feature } from "@/components/feature";
 
 interface StaticParamsProps {
 	id: number;
@@ -92,6 +93,8 @@ function BlockRenderer(block: Block) {
 			return <SectionHeading key={block.id} {...block} />;
 		case "layout.content-with-image":
 			return <ContentWithImage key={block.id} {...block} />;
+		case "elements.feature":
+			return <Feature key={block.id} {...block} />;
 		default:
 			return null;
 	}

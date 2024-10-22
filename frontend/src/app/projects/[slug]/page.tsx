@@ -72,7 +72,7 @@ export default async function MyProjects({ params: { slug } }: { params: { slug:
 				)}
 
 				<section className="relative mx-auto w-full pt-0 sm:w-[80%] sm:pt-10">
-					<h1 className="pb-5 text-3xl font-bold md:text-4xl">{data.title}</h1>
+					<h1 className="pb-5 text-3xl font-bold">{data.title}</h1>
 					{data.paragraph.map((paragraphItem, index) => (
 						<p key={index} className="pb-5 text-xl">
 							{paragraphItem.description}

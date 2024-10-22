@@ -70,7 +70,7 @@ export default async function MyExperience({ params: { slug } }: { params: { slu
 				)}
 
 				<section className="relative mx-auto w-full pt-0 sm:w-[80%] sm:pt-10">
-					<h1 className="text-3xl font-bold md:text-4xl">{data.company}</h1>
+					<h1 className="text-3xl font-bold">{data.company}</h1>
 					<h3 className="text-l my-2 md:text-xl">{data.role}</h3>
 					<p className="flex items-start gap-2 pb-5">
 						<Calendar size={24} className="shrink-0" />

@@ -11,7 +11,7 @@ export function Header({ data }: Readonly<ApiResponse<ApiRootLayout>>) {
 				<h1 className="gradient-mask font-heading text-3xl leading-relaxed tracking-wider sm:text-4xl sm:leading-relaxed lg:text-5xl lg:leading-relaxed">
 					{name}
 				</h1>
-				<h2 className="text-l lg:text-xl">{title}</h2>
+				<h2 className="text-l hidden sm:block lg:text-xl">{title}</h2>
 			</div>
 			<nav className="hidden items-center justify-around pt-2 sm:flex">
 				{nav.navItems && nav.navItems.map((item) => <Anchor {...item} type="navlink" />)}

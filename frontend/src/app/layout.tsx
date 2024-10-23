@@ -68,7 +68,7 @@ export default async function RootLayout({
 				)}
 			>
 				<Header {...data} />
-				<main className="content h-full overflow-hidden p-5">{children}</main>
+				<main className="content h-full min-h-[400px] overflow-hidden p-5">{children}</main>
 				<Footer {...data} />
 			</body>
 		</html>

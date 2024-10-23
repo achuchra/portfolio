@@ -4,7 +4,9 @@ const defaultFetchSettings: NextFetchRequestConfig = {
 	revalidate: env === "production" ? 3600 : 0,
 };
 
-export async function fetchData<T extends any = any>(url: string, authToken?: string) {
+export async function fetchData<T extends any = any>(url: string) {
+	const authToken = process.env.STRAPI_READONLY_ACCESS_TOKEN;
+
 	const headers = {
 		method: "GET",
 		headers: {
